@@ -44,6 +44,8 @@ public class Query {
     private int page = -1;
     private long sinceId = -1;
     private String geocode = null;
+    private long maxId = -1; 
+    
     public Query(){
     }
     public Query(String query){
@@ -116,6 +118,17 @@ public class Query {
     public String getGeocode() {
         return geocode;
     }
+    
+     /**
+     * 
+     * @return maxId - returns tweets with ids lesser than the given id.
+     */
+    public long getMaxId() {
+		return maxId;
+	}
+	public void setMaxId(long maxId) {
+		this.maxId = maxId;
+    }
 
     public static final String MILES = "mi";
     public static final String KILOMETERS = "km";
@@ -139,6 +152,7 @@ public class Query {
         appendParameter("page", page, params);
         appendParameter("since_id",sinceId , params);
         appendParameter("geocode", geocode, params);
+        appendParameter("max_id", maxId, params);
         PostParameter[] paramArray = new PostParameter[params.size()];
         return params.toArray(paramArray);
     }
@@ -195,6 +209,7 @@ public class Query {
                 ", page=" + page +
                 ", sinceId=" + sinceId +
                 ", geocode='" + geocode + '\'' +
-                '}';
+                ", maxId=" + maxId +
+            '}';
     }
 }
